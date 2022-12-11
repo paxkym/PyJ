@@ -1,0 +1,2 @@
+gcc /Users/cosikym/Desktop/Developer/Projects/Open_projects/PyJ/compiler.c -o /Users/cosikym/Desktop/Developer/Projects/Open_projects/PyJ/Executable
+open /Users/cosikym/Desktop/Developer/Projects/Open_projects/PyJ/Executable
