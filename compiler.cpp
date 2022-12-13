@@ -1,9 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include<list>
 
 char inputFile[] = "/Users/cosikym/Desktop/Developer/Projects/Open_projects/PyJ/main.py";
 char outputFile[] = "/Users/cosikym/Desktop/Developer/Projects/Open_projects/PyJ/out.py";
-
+void error(char msg[]){
+    printf("PyJ Error: ");
+    printf("%s", msg);
+}
 void write(char text[]){
     FILE *file;
     file = fopen(outputFile, "w");
@@ -17,21 +21,50 @@ void write(char text[]){
 
 
 void compile(char in[]){
-    printf("\n");
-  char h = "\n";
   
-  bool t = true;
-
+ std::list<char> out; 
 unsigned int i = 0;
-while(i<sizeof(in)){
-// if(in[i] == "\u000A"){
-    
-//     printf("ayo");
-// }
-    printf("%c", in[i]);
+bool inQuotes = false;
+unsigned int indent = 0;
+while(in[i] != NULL){
+    if(in[i] == '"'){
+        inQuotes == true;
+    }
+    if(in[i] == '\n'){
+        if(in[i+1] == 'v' && in[i+2] == 'a' && in[i+3] == 'r' && in[i+4] == ' '){
+            
+        }
+    }
+    if(in[i] == 'i' && in[i+1] == 'f'){
+        while(in[i] != '{'){
+            if(in[i] == NULL){
+                error("Missing a '{'");
+                return;
+            }
+            out.push_back(in[i]);
+            i++;
+        }
+                while(in[i] != '}'){
+            if(in[i] == NULL){
+                error("Missing a '}'");
+                return;
+            }
+            out.push_back(in[i]);
+            i++;
+        }
+    }
+
     i++;
 }
-write(in);
+
+i = 0;
+char output[1000];
+       for (char x : out) {
+output[i] = x;
+ printf("%c", x);
+i++;
+        }
+write(output);
 return;
 }
 
