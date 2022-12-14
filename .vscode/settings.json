@@ -3,6 +3,7 @@
         "string.h": "c",
         "string": "c",
         "iosfwd": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "list": "cpp"
     }
 }

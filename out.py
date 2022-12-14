@@ -1,2 +1,3 @@
-if(True){
+if("Hi{" != "Hi}"):
+ if("Hi{" != "Hi}"){
 print("hi{")
