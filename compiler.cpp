@@ -33,78 +33,44 @@ unsigned int i = 0;
 unsigned int i2 = 0;
 unsigned int indent = 1;
 while(in[i] != NULL){
+
  q(in[i]);
+
+
     if(in[i] == '\n'){
         if(in[i+1] == 'v' && in[i+2] == 'a' && in[i+3] == 'r' && in[i+4] == ' '){
             
         }
+
     }
-    if(in[i] == 'i' && in[i+1] == 'f' && !inQuotes){
-        while(true){
-            printf("%i%c%c", inQuotes, in[i], '\n');
-            if(in[i] == NULL){
-                error("Missing a '{'");
-                return;
-            }
-            out.push_back(in[i]);
-            q(in[i]);
-            if(in[i] == '{'){
-            if(!inQuotes){
-                out.pop_back();
-                break;
-             }
-            }
-            
-            i++;
-        }
-            i++;
-
-            while(in[i] != '\n'){
-            if(in[i] == NULL){
-                error("Missing a newline");
-                return;
-            }
-            q(in[i]);
-            i++;
-            }
-        i++;
-            out.push_back(':');
-            out.push_back('\n');
-                i2 = 0;
-                printf("%i", indent);
-
+    out.push_back(in[i]);
+    if(in[i] == '\n'){
+                    i2 = 0;
     while(i2<indent){
         out.push_back(' ');
         i2++;
     }
-    printf("hd\n%i\n", inQuotes);
-                while(true){
-            if(in[i] == NULL){
-                error("Missing a '}'");
-                return;
-            }
-                           out.push_back(in[i]);
-                         q(in[i]);
-            if(in[i] == '}'){
-              if(!inQuotes){
-                indent--;
-                 out.pop_back();
-                break;
-            }
-            }
-
-                
-            i++;
-        }
     }
-    i++;
+        
+
+        if(in[i] == '{' && !inQuotes){
+            out.pop_back();
+            out.push_back(':');
+        indent++;
+        
+    }
+    if(in[i] == '}' && !inQuotes){
+                out.pop_back();
+        indent--;
+            printf("%i", indent);
+}
+i++;
 }
 
 i = 0;
 char output[1000];
        for (char x : out) {
 output[i] = x;
- printf("%c", x);
 i++;
         }
 write(output);
