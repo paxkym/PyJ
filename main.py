@@ -5,5 +5,5 @@ print("hi{")
 }
 
 {
-h
+print('hi')
 }
