@@ -1,12 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include<list>
+ // Start variables
  std::list<char> out; 
 char inputFile[] = "/Users/cosikym/Desktop/Developer/Projects/Open_projects/PyJ/main.py";
 char outputFile[] = "/Users/cosikym/Desktop/Developer/Projects/Open_projects/PyJ/out.py";
+        // Flags
 bool inQuotes = false;
 bool isScopeBrace = false;
 bool isFree = true;
+bool isFlowControl = false;
+bool isValidFlowControl = NULL;
+
+// End variables
 void error(char msg[]){
     printf("PyJ Error: ");
     printf("%s", msg);
@@ -27,6 +33,7 @@ void q(char in){
     }
     isFree = !inQuotes;
 }
+
 void write(char text[]){
     FILE *file;
     file = fopen(outputFile, "w");
@@ -45,6 +52,11 @@ unsigned int i = 0;
 unsigned int i2 = 0;
 unsigned int indent = 1;
 while(in[i+1] != NULL){
+    flowControl("if", in[i]);
+    i++;
+}
+i = 0;
+while(in[i+1] != NULL){
     q(in[i]);
     if(in[i] == 'i' && in[i+1] == 'f'){
         while(true){
@@ -53,7 +65,7 @@ while(in[i+1] != NULL){
                 return;
             }
             if(in[i] == '{' && isFree){
-                
+             
             }
             q(in[i]);
             i++;
@@ -65,7 +77,9 @@ while(in[i+1] != NULL){
 i++;
 }
 }
+void flowControl(char statement[], char in){
 
+}
 void compile(char in[]){
 checkForErrors(in);
 unsigned int i = 0;
